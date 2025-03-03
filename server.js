@@ -1,25 +1,26 @@
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
 app.get('/', (req, res) => {
-  res.sendFile('./views/index.html');
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile('./views/about.html');
+  res.sendFile(path.join(__dirname, '/views/about.html'));
 });
 
 app.get('/contact', (req, res) => {
-  res.sendFile('./views/contact.html');
+  res.sendFile(path.join(__dirname, '/views/contact.html'));
 });
 
 app.get('/info', (req, res) => {
-  res.sendFile('./views/info.html');
+  res.sendFile(path.join(__dirname, '/views/info.html'));
 });
 
 app.get('/history', (req, res) => {
-  res.sendFile('./views/history.html');
+  res.sendFile(path.join(__dirname, '/views/history.html'));
 });
 
 app.listen(8000, () => {
