@@ -7,7 +7,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.send('<h1>About</h1>');
+  res.send('<h1>About</h1>');
 });
 
 app.get('/contact', (req, res) => {
