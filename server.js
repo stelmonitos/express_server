@@ -3,25 +3,25 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-    res.send('<h1>My first server!</h1>');
+  res.sendFile('./views/index.html');
 });
 
 app.get('/about', (req, res) => {
-  res.send('<h1>About</h1>');
+  res.sendFile('./views/about.html');
 });
 
 app.get('/contact', (req, res) => {
-    res.send('<h1>Contact</h1>');
+  res.sendFile('./views/contact.html');
 });
 
 app.get('/info', (req, res) => {
-    res.send('<h1>Info</h1>');
+  res.sendFile('./views/info.html');
 });
 
 app.get('/history', (req, res) => {
-    res.send('<h1>History</h1>');
+  res.sendFile('./views/history.html');
 });
 
 app.listen(8000, () => {
-    console.log('Server is running on port: 8000');
+  console.log('Server is running on port: 8000');
 });
