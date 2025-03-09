@@ -21,23 +21,23 @@ app.set('view engine', '.hbs');
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.get('/', (req, res) => {
-    res.render('index', { layout: false });
+    res.render('index');
 });
 
 app.get('/about', (req, res) => {
-    res.render('about', { layout: false });
+  res.render('about', { layout: 'dark' });
 });
 
 app.get('/contact', (req, res) => {
-    res.render('contact', { layout: false });
+    res.render('contact');
 });
 
 app.get('/info', (req, res) => {
-    res.render('info', { layout: false });
+    res.render('info');
 });
 
 app.get('/history', (req, res) => {
-    res.render('history', { layout: false });
+    res.render('history');
 });
 
 app.get('/hello/:name', (req, res) => {
@@ -45,7 +45,7 @@ app.get('/hello/:name', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.status(404).render('404', { layout: false });
+    res.status(404).render('404', {layout: false});
 });
 
 app.listen(8000, () => {
