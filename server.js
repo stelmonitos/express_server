@@ -7,12 +7,16 @@ const app = express();
 app.engine('.hbs', hbs());
 app.set('view engine', '.hbs');
 
-app.use((req, res, next) => {
-    res.show = (name) => {
-        res.sendFile(path.join(__dirname, `/views/${name}`));
-    };
-    next();
-});
+
+// tworze middleware (metode do res: res.show)
+// kod jest dzieki temu bardziej czytelny
+// app.use((req, res, next) => {
+//     res.show = (name) => {
+//         res.sendFile(path.join(__dirname, `/views/${name}`));
+//     };
+//     next();
+// });
+// ^nie potrzebne poniewaz przechodze na res.render od handlebars ktore domyslnie uzywa views jako katalogu do layoutow wiec jest gotowym middlewarem
 
 app.use(express.static(path.join(__dirname, '/public')));
 
