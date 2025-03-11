@@ -6,6 +6,8 @@ const app = express();
 
 app.engine('.hbs', hbs());
 app.set('view engine', '.hbs');
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 
 // tworze middleware (metode do res: res.show)
@@ -16,6 +18,7 @@ app.set('view engine', '.hbs');
 //     };
 //     next();
 // });
+
 // ^nie potrzebne poniewaz przechodze na res.render od handlebars ktore domyslnie uzywa views jako katalogu do layoutow wiec jest gotowym middlewarem
 
 app.use(express.static(path.join(__dirname, '/public')));
@@ -41,7 +44,11 @@ app.get('/history', (req, res) => {
 });
 
 app.get('/hello/:name', (req, res) => {
-    res.render('hello', { layout: false, name: req.params.name });
+    res.render('hello', { name: req.params.name });
+});
+
+app.post('/contact/send-message', (req, res) => {
+    res.json(req.body);
 });
 
 app.use((req, res) => {
