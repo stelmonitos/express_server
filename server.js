@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const hbs = require('express-handlebars');
 const multer = require('multer');
-const upload = multer({ dest: './public/data/uploads/' })
 
 const app = express();
 
@@ -11,6 +10,16 @@ app.set('view engine', '.hbs');
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './public/data/uploads/');
+    },
+    filename: function(req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage })
 
 // tworze middleware (metode do res: res.show)
 // kod jest dzieki temu bardziej czytelny
@@ -60,7 +69,6 @@ app.post('/contact/send-message', upload.single('uploaded_file'), (req, res) => 
     else {
         res.render('contact', { isError: true });
     }
-    console.log(req.file, req.body)
   });
 
 app.use((req, res) => {
